@@ -9,10 +9,11 @@ import MyPokemonList from "./pages/my-pokemon-list";
 
 import "antd/dist/antd.css";
 import "./App.css";
+import { useEffect } from "react/cjs/react.production.min";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-function App() {
+function App(props) {
   const [collapsed, setCollapsed] = useState(false);
 
   const onCollapse = (collapsed) => {
@@ -22,11 +23,13 @@ function App() {
 
   const onMenuSelected = () => {};
 
+  console.log(" ===> ", window.location.pathname);
+
   return (
     <div className="App">
       <Layout style={{}}>
-        <Row>
-          <Col xs={0} sm={7} md={9} xl={4}>
+        <Row justify={"center"}>
+          {/* <Col xs={0} sm={7} md={9} xl={4}>
             <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
               <div
                 className="logo"
@@ -43,20 +46,28 @@ function App() {
                 </Menu.Item>
               </Menu>
             </Sider>
-          </Col>
+          </Col> */}
           <Col xs={24} sm={17} md={15} xl={19}>
             <Layout className="site-layout">
               <Header className="site-layout-background" style={{ padding: 0 }}>
                 <Menu
                   theme="dark"
                   mode="horizontal"
-                  defaultSelectedKeys={["2"]}
+                  defaultSelectedKeys={() => {
+                    if (window.location.pathname === "/my-pokemon") {
+                      return ["2"];
+                    } else if (window.location.pathname === "/") {
+                      return ["1"];
+                    } else if (window.location.pathname.includes("detail")) {
+                      return ["1"];
+                    }
+                  }}
                 >
-                  <Menu.Item>
+                  <Menu.Item key={1}>
                     {" "}
                     <a href="/">All List</a>{" "}
                   </Menu.Item>
-                  <Menu.Item>
+                  <Menu.Item key={2}>
                     {" "}
                     <a href="/my-pokemon">My List</a>{" "}
                   </Menu.Item>

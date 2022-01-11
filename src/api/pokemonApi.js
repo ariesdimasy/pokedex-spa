@@ -10,10 +10,7 @@ export function getAllPokemon(params) {
 }
 
 export function getDetailPokemon(pokemonId) {
-  return axios.get("https://pokeapi.co/api/v2/pokemon", {
-    params: {
-      id: pokemonId,
-    },
+  return axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`, {
     headers: {
       contentType: "json",
     },
