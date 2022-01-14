@@ -83,7 +83,11 @@ const PokemonList = () => {
                 hoverable
                 cover={<img alt="example" src={item.imageUrl} key={item.id} />}
               >
-                <Meta title={item.name} description="www.instagram.com" />
+                <Meta
+                  style={{ textAlign: "center" }}
+                  title={item.id + ". " + item.name}
+                  description=""
+                />
               </Card>
             </a>
           </Col>

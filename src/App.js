@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { Layout, Menu, Row, Col } from "antd";
@@ -6,23 +6,14 @@ import { Layout, Menu, Row, Col } from "antd";
 import PokemonList from "./pages/pokemon-list";
 import PokemonDetail from "./pages/pokemon-detail";
 import MyPokemonList from "./pages/my-pokemon-list";
+import MyPokemonDetail from "./pages/my-pokemon-detail";
 
 import "antd/dist/antd.css";
 import "./App.css";
-import { useEffect } from "react/cjs/react.production.min";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 
 function App(props) {
-  const [collapsed, setCollapsed] = useState(false);
-
-  const onCollapse = (collapsed) => {
-    console.log(collapsed);
-    setCollapsed(collapsed);
-  };
-
-  const onMenuSelected = () => {};
-
   console.log(" ===> ", window.location.pathname);
 
   return (
@@ -85,6 +76,10 @@ function App(props) {
 
                   <Route path="/my-pokemon" element={<MyPokemonList />} />
                   <Route path="/detail/:id" element={<PokemonDetail />} />
+                  <Route
+                    path="/my-pokemon/:_id"
+                    element={<MyPokemonDetail />}
+                  />
                 </Routes>
               </Content>
               <Footer style={{ textAlign: "center" }}>

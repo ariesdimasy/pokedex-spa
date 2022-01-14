@@ -1,22 +1,43 @@
 import { useEffect, useState } from "react";
 import { Row, Col, Card, Tag, Button, Alert } from "antd";
-import { getDetailPokemon, catchPokemon } from "./../../api/pokemonApi";
+import {
+  getDetailPokemon,
+  releasePokemon,
+  getMyPokemonDetail,
+} from "./../../api/pokemonApi";
 import { useParams } from "react-router-dom";
 
 const PokemonDetail = (props) => {
+  const [myPokemon, setMyPokemon] = useState({});
   const [pokemonDetail, setPokemonDetail] = useState({});
-  const { id } = useParams();
+  const { _id } = useParams();
   const { Meta } = Card;
 
   const getPokemonDetail = () => {
-    getDetailPokemon(id).then((res) => {
-      setPokemonDetail(res.data);
-      console.log(res.data);
-    });
+    getMyPokemonDetail(_id)
+      .then((res) => {
+        setMyPokemon(res.data.data);
+        //console.log("RARARASPUTIN ==> ", res.data.data);
+        return getDetailPokemon(res.data.data.pokemonId);
+      })
+      .then((res) => {
+        //console.log("===88 ", res.data);
+        const obj = pokemonDetail;
+        //obj["detail"] = res.data;
+
+        setPokemonDetail(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // getDetailPokemon(pokemonId).then((res) => {
+    //   setPokemonDetail(res.data);
+    //   console.log(res.data);
+    // });
   };
 
-  const catchThisPokemon = (data) => {
-    catchPokemon(data)
+  const releaseThisPokemon = (data) => {
+    releasePokemon(_id)
       .then((res) => {
         alert(JSON.stringify(res.data.message));
         if (res.data.success) {
@@ -34,7 +55,7 @@ const PokemonDetail = (props) => {
 
   return (
     <div>
-      <h1 style={{ fontSize: 20 }}> {pokemonDetail.name} </h1>
+      <h1 style={{ fontSize: 20 }}> {myPokemon?.name} </h1>
       <Row>
         <Col xs={24} sm={24} lg={8} md={8} style={{ marginRight: 20 }}>
           <Card
@@ -44,11 +65,11 @@ const PokemonDetail = (props) => {
               <img
                 width={150}
                 alt="example"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${myPokemon?.pokemonId}.png`}
               />
             }
           >
-            <Meta title={pokemonDetail.name} description="" />
+            <Meta title={myPokemon?.name} description="" />
           </Card>
         </Col>
         <Col xs={24} sm={24} lg={12} md={12}>
@@ -78,11 +99,11 @@ const PokemonDetail = (props) => {
                 </tr>
                 <tr>
                   <td> Base Experience </td>
-                  <td> {pokemonDetail.base_experience} </td>
+                  <td> {pokemonDetail?.base_experience} </td>
                 </tr>
                 <tr>
                   <td> Weight </td>
-                  <td> {pokemonDetail.weight} </td>
+                  <td> {pokemonDetail?.weight} </td>
                 </tr>
                 <tr>
                   <td> Types </td>
@@ -127,14 +148,12 @@ const PokemonDetail = (props) => {
           <Button
             type="primary"
             onClick={() => {
-              catchThisPokemon({
-                name: pokemonDetail.name,
-                pokemon_id: id,
+              releaseThisPokemon({
+                pokemon_id: pokemonDetail?.pokemonId,
               });
             }}
           >
-            {" "}
-            Catch !{" "}
+            Release !
           </Button>
         </Col>
       </Row>
