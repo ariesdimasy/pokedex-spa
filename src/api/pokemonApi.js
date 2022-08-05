@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const endpoint = "https://pokedex-backend-api-2022.herokuapp.com";
+
 export function getAllPokemon(params) {
   return axios.get("https://pokeapi.co/api/v2/pokemon", {
     params: params,
@@ -26,7 +28,7 @@ export function getPokemonSpesiesDetail(pokemonId) {
 }
 
 export function getMyPokemons() {
-  return axios.get(`http://localhost:5500/mypokemons`, {
+  return axios.get(`${endpoint}/mypokemons`, {
     headers: {
       contentType: "json",
     },
@@ -34,7 +36,7 @@ export function getMyPokemons() {
 }
 
 export function getMyPokemonDetail(_id) {
-  return axios.get(`http://localhost:5500/mypokemons/detail/${_id}`, {
+  return axios.get(`${endpoint}/mypokemons/detail/${_id}`, {
     headers: {
       contentType: "json",
     },
@@ -42,19 +44,22 @@ export function getMyPokemonDetail(_id) {
 }
 
 export function catchPokemon(data) {
-  return axios.post(`http://localhost:5500/mypokemons/catch`, {
-    data: {
-      pokemon_id: data.pokemon_id,
+  return axios.post(
+    `${endpoint}/mypokemons/catch`,
+    {
+      pokemon_id: parseInt(data.pokemon_id),
       name: data.name,
     },
-    headers: {
-      contentType: "json",
-    },
-  });
+    {
+      headers: {
+        contentType: "json",
+      },
+    }
+  );
 }
 
 export function releasePokemon(_id) {
-  return axios.delete(`http://localhost:5500/mypokemons/release/${_id}`, {
+  return axios.delete(`${endpoint}/mypokemons/release/${_id}`, {
     headers: {
       contentType: "json",
     },
