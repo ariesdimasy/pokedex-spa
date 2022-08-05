@@ -43,7 +43,7 @@ const PokemonList = () => {
 
   const onShowSizeChange = (dt) => {
     console.log(dt);
-    alert(JSON.stringify(dt));
+    // alert(JSON.stringify(dt));
   };
 
   useEffect(() => {

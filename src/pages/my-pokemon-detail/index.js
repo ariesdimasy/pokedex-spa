@@ -6,6 +6,7 @@ import {
   getMyPokemonDetail,
 } from "./../../api/pokemonApi";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const PokemonDetail = (props) => {
   const [myPokemon, setMyPokemon] = useState({});
@@ -39,9 +40,22 @@ const PokemonDetail = (props) => {
   const releaseThisPokemon = (data) => {
     releasePokemon(_id)
       .then((res) => {
-        alert(JSON.stringify(res.data.message));
         if (res.data.success) {
-          window.location.replace("http://localhost:3000/my-pokemon");
+          Swal.fire({
+            title: "Success",
+            text: JSON.stringify(res.data.message),
+            timer: 3000,
+            icon: "success",
+          }).then(() => {
+            window.location.replace("http://localhost:3000/my-pokemon");
+          });
+        } else {
+          Swal.fire({
+            title: "Failed",
+            text: JSON.stringify(res.data.message),
+            timer: 3000,
+            icon: "error",
+          });
         }
       })
       .catch((err) => {
