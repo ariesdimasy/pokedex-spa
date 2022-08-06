@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import { Layout, Menu, Row, Col } from "antd";
 
@@ -71,8 +71,8 @@ function App(props) {
                   minHeight: 280,
                 }}
               >
-                <HashRouter>
-                  <Route path="/" element={<PokemonList />} />
+                <Routes>
+                  <Route exact path="/" element={<PokemonList />} />
 
                   <Route path="/my-pokemon" element={<MyPokemonList />} />
                   <Route path="/detail/:id" element={<PokemonDetail />} />
@@ -80,7 +80,7 @@ function App(props) {
                     path="/my-pokemon/:_id"
                     element={<MyPokemonDetail />}
                   />
-                </HashRouter>
+                </Routes>
               </Content>
               <Footer style={{ textAlign: "center" }}>
                 Pokedex ©2022 Created by Aries Dimas Yudhistira
