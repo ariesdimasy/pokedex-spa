@@ -26,7 +26,7 @@ const PokemonDetail = (props) => {
             timer: 3000,
             icon: "success",
           }).then(() => {
-            window.location.replace("http://localhost:3000/my-pokemon");
+            window.location.replace(window.location.origin + "/my-pokemon");
           });
         } else {
           Swal.fire({
