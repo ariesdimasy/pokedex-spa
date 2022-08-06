@@ -56,11 +56,11 @@ function App(props) {
                 >
                   <Menu.Item key={1}>
                     {" "}
-                    <a href="/">All List</a>{" "}
+                    <a href="./">All List</a>{" "}
                   </Menu.Item>
                   <Menu.Item key={2}>
                     {" "}
-                    <a href="/my-pokemon">My List</a>{" "}
+                    <a href="./my-pokemon">My List</a>{" "}
                   </Menu.Item>
                 </Menu>
               </Header>
