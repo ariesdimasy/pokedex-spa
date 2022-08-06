@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 
 import { Layout, Menu, Row, Col } from "antd";
 
@@ -71,16 +71,16 @@ function App(props) {
                   minHeight: 280,
                 }}
               >
-                <Routes>
-                  <Route path="./" element={<PokemonList />} />
+                <BrowserRouter>
+                  <Route path="/" element={<PokemonList />} />
 
-                  <Route path="./my-pokemon" element={<MyPokemonList />} />
-                  <Route path="./detail/:id" element={<PokemonDetail />} />
+                  <Route path="/my-pokemon" element={<MyPokemonList />} />
+                  <Route path="/detail/:id" element={<PokemonDetail />} />
                   <Route
-                    path="./my-pokemon/:_id"
+                    path="/my-pokemon/:_id"
                     element={<MyPokemonDetail />}
                   />
-                </Routes>
+                </BrowserRouter>
               </Content>
               <Footer style={{ textAlign: "center" }}>
                 Pokedex ©2022 Created by Aries Dimas Yudhistira
