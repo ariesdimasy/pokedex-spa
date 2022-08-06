@@ -72,12 +72,12 @@ function App(props) {
                 }}
               >
                 <Routes>
-                  <Route path="/" element={<PokemonList />} />
+                  <Route path="./" element={<PokemonList />} />
 
-                  <Route path="/my-pokemon" element={<MyPokemonList />} />
-                  <Route path="/detail/:id" element={<PokemonDetail />} />
+                  <Route path="./my-pokemon" element={<MyPokemonList />} />
+                  <Route path="./detail/:id" element={<PokemonDetail />} />
                   <Route
-                    path="/my-pokemon/:_id"
+                    path="./my-pokemon/:_id"
                     element={<MyPokemonDetail />}
                   />
                 </Routes>
