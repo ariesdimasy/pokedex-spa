@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 import { Layout, Menu, Row, Col } from "antd";
 
@@ -56,11 +56,11 @@ function App(props) {
                 >
                   <Menu.Item key={1}>
                     {" "}
-                    <a href="./">All List</a>{" "}
+                    <Link to="/">All List</Link>{" "}
                   </Menu.Item>
                   <Menu.Item key={2}>
                     {" "}
-                    <a href="./my-pokemon">My List</a>{" "}
+                    <Link to="/my-pokemon">My List</Link>{" "}
                   </Menu.Item>
                 </Menu>
               </Header>

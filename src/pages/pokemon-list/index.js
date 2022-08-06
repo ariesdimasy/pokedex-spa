@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Card, Row, Col, Pagination } from "antd";
 import { getAllPokemon } from "../../api/pokemonApi";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -78,7 +79,7 @@ const PokemonList = () => {
             xs={24}
             style={{ marginRight: 10, marginBottom: 10 }}
           >
-            <a href={`/detail/${item.id}`} key={item.id}>
+            <Link to={`/detail/${item.id}`} key={item.id}>
               <Card
                 hoverable
                 cover={<img alt="example" src={item.imageUrl} key={item.id} />}
@@ -89,7 +90,7 @@ const PokemonList = () => {
                   description=""
                 />
               </Card>
-            </a>
+            </Link>
           </Col>
         ))}
       </Row>

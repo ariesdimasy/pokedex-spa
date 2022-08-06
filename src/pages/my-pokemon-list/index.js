@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Row, Col, Pagination } from "antd";
 import { getMyPokemons } from "../../api/pokemonApi";
+import { Link } from "react-router-dom";
 
 const MyPokemonList = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -73,7 +74,7 @@ const MyPokemonList = () => {
             xs={24}
             style={{ marginRight: 10, marginBottom: 10 }}
           >
-            <a href={`/my-pokemon/${item._id}`} key={item._id}>
+            <Link to={`/my-pokemon/${item._id}`} key={item._id}>
               <Card
                 hoverable
                 cover={<img alt="example" src={item.imageUrl} key={item._id} />}
@@ -84,7 +85,7 @@ const MyPokemonList = () => {
                   description=""
                 />
               </Card>
-            </a>
+            </Link>
           </Col>
         ))}
       </Row>
